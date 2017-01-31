@@ -12,6 +12,7 @@ class HumanPlayer
   end
 
   def play_turn
+    begin
     from = nil
     to = nil
     until from
@@ -29,11 +30,13 @@ class HumanPlayer
       from = pos if @board.valid_to(pos, self)
       @display.render(@name)
     end
-
+    raise PositionException.new("not valid for current piece", to) unless @board[from].type.include?(to)
+    rescue PositionException => e
+      puts e.msg
+      sleep(1)
+      retry
+    end
     @board.move_piece(from, to)
     @display.render(@name)
   end
-
-
-
 end

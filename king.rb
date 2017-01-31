@@ -7,6 +7,6 @@ class King < Piece
   end
 
   def type
-    king_moves
+    moves(KING_MOVES)
   end
 end

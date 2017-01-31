@@ -7,6 +7,6 @@ class Rook < Piece
   end
 
   def type
-    horizontal
+    moves(STRAIGHT)
   end
 end

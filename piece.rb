@@ -9,11 +9,4 @@ class Piece
     @board = board
     @player = player
   end
-
-  def valid_moves
-    type
-  end
-
-
-
 end

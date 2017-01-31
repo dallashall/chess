@@ -10,21 +10,6 @@ class Display
     @cursor = Cursor.new([0,0], board)
   end
 
-  def move(new_pos)
-
-  end
-
-  # def test
-  #   while true
-  #     @cursor.get_input
-  #     render
-  #   end
-  # end
-
-  SYMBOLS = {
-
-  }
-
   def render(name)
     system("clear")
     string = ""
@@ -46,7 +31,6 @@ class Display
     end
     puts string
     puts "#{name}, it's your turn!"
-
   end
 
 end

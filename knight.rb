@@ -8,6 +8,6 @@ class Knight < Piece
   end
 
   def type
-    knight_moves
+    moves(KNIGHT_MOVES)
   end
 end

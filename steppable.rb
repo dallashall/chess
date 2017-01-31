@@ -33,24 +33,15 @@ module Steppable
     [-1, 1]
   ]
 
-  def knight_moves
+  def moves(type)
     potentials = []
-    KNIGHT_MOVES.each do |arr|
-      potentials += grow_position(arr)
-    end
-    potentials
-  end
-
-  def king_moves
-    potentials = []
-    KING_MOVES.each do |arr|
+    type.each do |arr|
       potentials += grow_position(arr)
     end
     potentials
   end
 
   def pawn_moves
-    # byebug
     potentials = []
     moves = (self.player == board.player_one ? PLAYER_ONE_PAWN_MOVES : PLAYER_TWO_PAWN_MOVES)
     moves.each.with_index do |arr, idx|
@@ -59,21 +50,25 @@ module Steppable
     potentials
   end
 
+  private
+  
   def adjacent_kill(diff)
-    new_pos = [@position[0] + diff[0], @position[1] + diff[1]]
+    new_pos = potential_pos(diff)
     @board.valid_pos(new_pos, @player) ? [new_pos] : []
   end
 
   def grow_pawn_position(diff)
-    new_pos = [@position[0] + diff[0], @position[1] + diff[1]]
+    new_pos = potential_pos(diff)
     @board.valid_pos(new_pos, @player) && @board[new_pos].player.nil? ? [new_pos] : []
   end
 
+  def potential_pos(diff)
+    [@position[0] + diff[0], @position[1] + diff[1]]
+  end
+
   def grow_position(diff)
-    # byebug
     potentials = []
-    new_pos = [@position[0] + diff[0], @position[1] + diff[1]]
-    # byebug
+    new_pos = potential_pos(diff)
     potentials << new_pos if @board.valid_pos(new_pos, @player)
     potentials
   end

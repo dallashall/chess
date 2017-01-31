@@ -15,9 +15,6 @@ class Game
   end
 
   private
-  def notify_players
-
-  end
 
   def swap_turn
     @current_player = @current_player == @board.player_one ? @board.player_two : @board.player_one

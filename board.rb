@@ -6,7 +6,6 @@ require_relative 'king'
 require_relative 'pawn'
 require_relative 'null'
 require_relative 'position_exception'
-require "byebug"
 
 class Board
   attr_reader :grid, :player_one, :player_two
@@ -27,7 +26,6 @@ class Board
         setup_nil_row(i)
       end
     end
-    # byebug
     @grid
   end
 
@@ -37,10 +35,6 @@ class Board
 
   def []=(pos, piece)
     @grid[pos[0]][pos[1]] = piece
-  end
-
-  def dup
-
   end
 
   def valid_pos(pos, player)
@@ -56,20 +50,14 @@ class Board
   end
 
   def move_piece(from, to)
-
-
-    raise PositionException.new("not valid for current piece", to) unless self[from].type.include?(to)
     self[to] = self[from]
     self[to].position = to
     self[from] = Null.new(from, self, nil)
   end
 
   def won?
+    # TODO: Checkmate??
     false
-  end
-
-  def checkmate?
-
   end
 
   private
@@ -108,14 +96,5 @@ class Board
     @grid[i].map!.with_index do |_, j|
       Null.new([i, j], self, nil)
     end
-  end
-
-  protected
-  def make_starting_grid
-
-  end
-
-  def find_king(color)
-
   end
 end

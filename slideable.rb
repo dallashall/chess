@@ -1,32 +1,22 @@
-require "byebug"
 module Slideable
 
-  STRAIGHT = {
-    left: [0, -1],
-    right: [0, 1],
-    up: [-1, 0],
-    down: [1, 0]
-  }
+  STRAIGHT = [
+    [0, -1],
+    [0, 1],
+    [-1, 0],
+    [1, 0]
+  ]
 
-  DIAGS = {
-    upleft: [-1, -1],
-    upright: [-1, 1],
-    downright: [1, 1],
-    downleft: [1, -1]
-  }
+  DIAGS = [
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
+    [1, -1]
+  ]
 
-  def horizontal
-    # byebug
+  def moves(type)
     potentials = []
-    STRAIGHT.each do |k,v|
-      potentials += grow_position(v)
-    end
-    potentials
-  end
-
-  def diagonal
-    potentials = []
-    DIAGS.each do |k,v|
+    type.each do |v|
       potentials += grow_position(v)
     end
     potentials
@@ -42,6 +32,4 @@ module Slideable
     end
     potentials
   end
-
-
 end

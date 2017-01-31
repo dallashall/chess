@@ -7,6 +7,6 @@ class Queen < Piece
   end
 
   def type
-    horizontal + diagonal
+    moves(STRAIGHT) + moves(DIAGS)
   end
 end
