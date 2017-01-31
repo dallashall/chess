@@ -1,18 +1,13 @@
-class Pawn
-  def moves()
+require_relative 'piece'
+
+class Pawn < Piece
+  include Steppable
+
+  def symbol
+    @player == @board.player_one ? " ♙ " : " ♟ "
   end
 
-  protected
-  def at_start_row?
-  end
-
-  def forward_dir
-
-  end
-
-  def forward_steps
-  end
-  
-  def side_attacks
+  def type
+    pawn_moves
   end
 end
