@@ -31,7 +31,7 @@ module Checker
   end
 
   def checkmated?
-    return false if allies_can_break_check?
+    return false if !in_check? || allies_can_break_check?
     true
   end
 

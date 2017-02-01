@@ -49,6 +49,7 @@ module Steppable
     moves.each.with_index do |arr, idx|
       potentials += idx == 0 ?  grow_pawn_position(arr) : adjacent_kill(arr)
     end
+    # byebug
     potentials
   end
 
@@ -56,7 +57,6 @@ module Steppable
 
   def adjacent_kill(diff)
     new_pos = potential_pos(diff)
-    # byebug
     @board.valid_pos(new_pos, @player) && @board.valid_kill(new_pos, @player) ? [new_pos] : []
   end
 
