@@ -29,6 +29,15 @@ class Board
     @grid
   end
 
+  def opposing_king_pos(player)
+    @grid.each_with_index do |row, i|
+      row.each_with_index do |tile, j|
+        return [i, j] if tile.class == King && tile.player != player
+      end
+    end
+    nil
+  end
+
   def [](pos)
     @grid[pos[0]][pos[1]]
   end
@@ -39,6 +48,10 @@ class Board
 
   def valid_pos(pos, player)
     pos.all?{|el| (0..7).include?(el)} && self[pos].player != player
+  end
+
+  def valid_kill(pos, player)
+    self[pos].player != nil
   end
 
   def valid_from(pos, player)
@@ -56,8 +69,8 @@ class Board
   end
 
   def won?
-    # TODO: Checkmate??
-    false
+    self[opposing_king_pos(@player_one)].checkmated? ||
+    self[opposing_king_pos(@player_two)].checkmated?
   end
 
   private

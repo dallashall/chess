@@ -8,10 +8,12 @@ class Game
   end
 
   def play
-    until @board.won?
+    loop do
       @current_player.play_turn
+      break if @board.won?
       swap_turn
     end
+    puts "#{@current_player.name} wins!"
   end
 
   private

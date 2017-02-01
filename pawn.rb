@@ -7,7 +7,7 @@ class Pawn < Piece
     @player == @board.player_one ? " ♙ " : " ♟ "
   end
 
-  def type
+  def potential_moves
     pawn_moves
   end
 end

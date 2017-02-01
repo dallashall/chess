@@ -6,7 +6,7 @@ class Bishop < Piece
     @player == @board.player_one ? " ♗ " : " ♝ "
   end
 
-  def type
-    diagonal
+  def potential_moves
+    moves(DIAGS)
   end
 end

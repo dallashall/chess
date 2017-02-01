@@ -6,7 +6,7 @@ class Queen < Piece
     @player == @board.player_one ? " ♕ " : " ♛ "
   end
 
-  def type
+  def potential_moves
     moves(STRAIGHT) + moves(DIAGS)
   end
 end

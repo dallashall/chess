@@ -14,23 +14,28 @@ class Display
     system("clear")
     string = ""
     @board.grid.each.with_index do |row, i|
-      row.each.with_index do |tile, j|
-        if @cursor.cursor_pos == [i,j]
-          string += (tile.nil? ?  "   ".on_light_red : @board[[i, j]].symbol.on_light_blue)
-        else
-          if i.even? && j.even?
-            string += (tile.nil? ?  "   ".on_light_white : @board[[i, j]].symbol.light_black.on_light_white)
-          elsif i.odd? && j.odd?
-            string += (tile.nil? ?  "   ".on_light_white : @board[[i, j]].symbol.light_black.on_light_white )
-          else
-            string += (tile.nil? ?  "   ".on_black : @board[[i, j]].symbol.light_black )
-          end
-        end
+      row.each_index do |j|
+        string += color(i, j)
       end
       string += "\n"
     end
     puts string
     puts "#{name}, it's your turn!"
+  end
+
+  def color(i, j)
+    pos_symbol = @board[[i, j]].symbol
+    if @cursor.cursor_pos == [i,j]
+      pos_symbol.on_light_blue
+    else
+      if i.even? && j.even?
+        pos_symbol.light_black.on_light_white
+      elsif i.odd? && j.odd?
+        pos_symbol.light_black.on_light_white
+      else
+        pos_symbol.light_black
+      end
+    end
   end
 
 end

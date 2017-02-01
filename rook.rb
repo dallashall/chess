@@ -6,7 +6,7 @@ class Rook < Piece
     @player == @board.player_one ? " ♖ " : " ♜ "
   end
 
-  def type
+  def potential_moves
     moves(STRAIGHT)
   end
 end

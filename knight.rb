@@ -7,7 +7,7 @@ class Knight < Piece
     @player == @board.player_one ? " ♘ " : " ♞ "
   end
 
-  def type
+  def potential_moves
     moves(KNIGHT_MOVES)
   end
 end

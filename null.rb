@@ -3,4 +3,8 @@ class Null < Piece
   def symbol
     "   "
   end
+
+  def threatens_king?
+    false
+  end
 end
